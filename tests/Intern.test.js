@@ -1,4 +1,3 @@
-const Employee = require('../lib/employee');
 const Intern = require('../lib/intern');
 
 describe('Intern', () => {
@@ -115,7 +114,7 @@ describe('getEmail', () => {
 
 describe('getRole', () => {
     it('should return the role of the employee', () => {
-        const employee = new Employee('Rufus', 0, 'rufus.the.mag@akc.org', 'intern');
+        const employee = new Intern('Rufus', 0, 'rufus.the.mag@akc.org', 'intern');
 
         expect(employee.getRole()).toEqual('Intern');
     });   
