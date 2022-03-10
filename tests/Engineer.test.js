@@ -1,31 +1,95 @@
-const Employee = require('../lib/employee');
+const Engineer = require('../lib/employee');
 const Engineer = require('../lib/engineer');
 
 describe('Engineer', () => {
-    it('should create an object with name, id, email, and gitHub properties', () => {
-        const engineer = new Engineer();
 
-        //Verify that the new object has the correct properties
-        expect(engineer).toEqual({name: '', id: undefined, email: '', gitHub: ''});
+    describe('Initialization', () => {
+        it('should create an object with name, id, email, and gitHub properties', () => {
+            const employee = new Engineer('Rufus', 5, 'rufus.the.mag@akc.org', 'CptUnderpants');
+    
+            //Verify that the new object has the correct properties
+            expect(employee).toEqual({name: 'Rufus', id: 5, email: 'rufus.the.mag@akc.org', gitHub: 'CptUnderpants'});
+        });
+
+        it("should throw an error if provided no arguments", () => {
+            // Wrap the object initialization in a callback function that Jest will run
+            const cb = () => new Engineer();
+      
+            // Verify that an error was thrown in the callback function
+            expect(cb).toThrow();
+          });
+        
+          it("should throw an error if not provided an id", () => {
+            const cb = () => new Engineer("Rufus");
+      
+            // Define the error message that is expected to be thrown
+            const err = new Error("Expected parameter 'id' to be a number");
+      
+            // Verify that the correct error was thrown when the callback is executed
+            expect(cb).toThrowError(err);
+          });
+
+          it("should throw an error if not provided an email", () => {
+            const cb = () => new Engineer("Rufus", 0);
+      
+            // Define the error message that is expected to be thrown
+            const err = new Error("Expected parameter 'email' to be a String");
+      
+            // Verify that the correct error was thrown when the callback is executed
+            expect(cb).toThrowError(err);
+          });
+
+          it("should throw an error if not provided a gitHub", () => {
+            const cb = () => new Engineer('Rufus', 5, 'rufus.the.mag@akc.org');
+      
+            // Define the error message that is expected to be thrown
+            const err = new Error("Expected parameter 'gitHub' to be a String");
+      
+            // Verify that the correct error was thrown when the callback is executed
+            expect(cb).toThrowError(err);
+          });
+
+          it("should throw an error if 'name' is not a string", () => {
+            const cb = () => new Engineer(3, 2);
+            const err = new Error("Expected parameter 'name' to be a non-empty string");
+      
+            expect(cb).toThrowError(err);
+          });
+      
+
+          it("should throw an error if 'id' is not a number", () => {
+            const cb = () => new Engineer("Rufus", "2");
+            const err = new Error("Expected parameter 'id' to be a non-negative number");
+      
+            expect(cb).toThrowError(err);
+          });
+
+          it("should throw an error if 'email' is not a string", () => {
+            const cb = () => new Engineer('Rufus', 2, 0);
+            const err = new Error("Expected parameter 'name' to be a non-empty string");
+      
+            expect(cb).toThrowError(err);
+          });
+
+          it("should throw an error if 'gitHub' is not a string", () => {
+            const cb = () => new Engineer('Rufus', 5, 'rufus.the.mag@akc.org', 0);
+            const err = new Error("Expected parameter 'name' to be a non-empty string");
+      
+            expect(cb).toThrowError(err);
+          });
+
     });
+ 
 });
+
+
 
 describe('getName', () => {
     it('should return the name of the engineer', () => {
-        const employee = new Engineer('Rufus');
+        const employee = new Engineer('Rufus', 5, 'rufus.the.mag@akc.org', 'CptUnderpants');
 
         expect(employee.getName()).toEqual('Rufus');
     });
-
-    it('should throw an error if not passed a String as an argument', () => {
-        const err = new Error('Expected parameter "name" to be a String');
-
-        const cb = () => {
-            const employee = new Engineer(0);
-        }
-
-        expect(cb).toThrowError(err);
-    })
 });
 
 describe('getID', () => {
@@ -33,16 +97,6 @@ describe('getID', () => {
         const employee = new Engineer('Rufus', 0);
 
         expect(employee.getID()).toEqual(0);
-    });
-
-    it('should throw an error if not passed a Number as an argument', () =>{
-        const err = new Error('Expected parameter "id" to be a Number');
-
-        const cb = () => {
-            const employee = new Engineer('Rufus', '0');
-        }
-
-        expect(cb).toThrowError(err);
     });
 });
 
@@ -52,36 +106,25 @@ describe('getEmail', () => {
 
         expect(employee.getEmail()).toEqual('rufus.the.mag@akc.org');
     });
-
-    it('should throw an error if the email argument is not a String', () => {
-        const err = new Error('Expected parameter "email" to be a String');
-
-        const cb = () => {
-            const employee = new Engineer('Rufus', 0, 12);
-        }
-
-        expect(cb).toThrowError(err);
-    });
-
     
 });
 
 
 describe('getRole', () => {
-    it('should return the role of the employee', () => {
-        const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org', 'intern');
+    it('should return the role of the engineer', () => {
+        const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org');
 
-        expect(employee.getRole()).toEqual('intern');
+        expect(employee.getRole()).toEqual('Engineer');
     });
 
-    it('should throw an error if the role argument is not a String', () => {
-        const err = new Error('Expected parameter "role" to be a String');
+    
+});
 
-        const cb = () => {
-            const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org', 0);
-        }
+describe('getGitHub', () => {
+    it('should return the gitHub of the employee', () => {
+        const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org', 'CptUnderpants');
 
-        expect(cb).toThrowError(err);
+        expect(employee.getGitHub()).toEqual('CptUnderpants');
     });
 
     
