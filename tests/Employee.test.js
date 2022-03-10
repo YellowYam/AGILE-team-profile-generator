@@ -36,7 +36,7 @@ describe('Employee', () => {
             const cb = () => new Employee("Rufus", 0);
       
             // Define the error message that is expected to be thrown
-            const err = new Error("Expected parameter 'email' to be a String");
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
@@ -52,14 +52,14 @@ describe('Employee', () => {
 
           it("should throw an error if 'id' is not a number", () => {
             const cb = () => new Employee("Rufus", "2");
-            const err = new Error("Expected parameter 'id' to be a non-negative number");
+            const err = new Error("Expected parameter 'id' to be a number");
       
             expect(cb).toThrowError(err);
           });
 
           it("should throw an error if 'email' is not a string", () => {
             const cb = () => new Employee('Rufus', 2, 0);
-            const err = new Error("Expected parameter 'name' to be a non-empty string");
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             expect(cb).toThrowError(err);
           });
@@ -76,7 +76,7 @@ describe('getName', () => {
     });
 
     it('should throw an error if not passed a String as an argument', () => {
-        const err = new Error('Expected parameter "name" to be a String');
+        const err = new Error("Expected parameter 'name' to be a non-empty string");
 
         const cb = () => {
             const employee = new Employee(0, 5, 'rufus.the.mag@akc.org');
@@ -94,7 +94,7 @@ describe('getID', () => {
     });
 
     it('should throw an error if not passed a number as an argument', () =>{
-        const err = new Error('Expected parameter "id" to be a Number');
+        const err = new Error("Expected parameter 'id' to be a number");
 
         const cb = () => {
             const employee = new Employee('Rufus', '5', 'rufus.the.mag@akc.org');
@@ -112,7 +112,7 @@ describe('getEmail', () => {
     });
 
     it('should throw an error if the email argument is not a String', () => {
-        const err = new Error('Expected parameter "email" to be a String');
+        const err = new Error("Expected parameter 'email' to be a non-empty string");
 
         const cb = () => {
             const employee = new Employee('Rufus', 0, 12);

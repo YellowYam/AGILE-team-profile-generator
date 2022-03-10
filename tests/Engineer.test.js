@@ -35,7 +35,7 @@ describe('Engineer', () => {
             const cb = () => new Engineer("Rufus", 0);
       
             // Define the error message that is expected to be thrown
-            const err = new Error("Expected parameter 'email' to be a String");
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
@@ -45,7 +45,7 @@ describe('Engineer', () => {
             const cb = () => new Engineer('Rufus', 5, 'rufus.the.mag@akc.org');
       
             // Define the error message that is expected to be thrown
-            const err = new Error("Expected parameter 'gitHub' to be a String");
+            const err = new Error("Expected parameter 'gitHub' to be a non-empty string");
       
             // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
@@ -61,21 +61,21 @@ describe('Engineer', () => {
 
           it("should throw an error if 'id' is not a number", () => {
             const cb = () => new Engineer("Rufus", "2");
-            const err = new Error("Expected parameter 'id' to be a non-negative number");
+            const err = new Error("Expected parameter 'id' to be a number");
       
             expect(cb).toThrowError(err);
           });
 
           it("should throw an error if 'email' is not a string", () => {
             const cb = () => new Engineer('Rufus', 2, 0);
-            const err = new Error("Expected parameter 'name' to be a non-empty string");
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             expect(cb).toThrowError(err);
           });
 
           it("should throw an error if 'gitHub' is not a string", () => {
             const cb = () => new Engineer('Rufus', 5, 'rufus.the.mag@akc.org', 0);
-            const err = new Error("Expected parameter 'name' to be a non-empty string");
+            const err = new Error("Expected parameter 'gitHub' to be a non-empty string");
       
             expect(cb).toThrowError(err);
           });

@@ -35,7 +35,7 @@ describe('Manager', () => {
             const cb = () => new Manager("Rufus", 0);
       
             // Define the error message that is expected to be thrown
-            const err = new Error("Expected parameter 'email' to be a String");
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
@@ -113,7 +113,7 @@ describe('getEmail', () => {
 
 describe('getRole', () => {
     it('should return the role of the employee', () => {
-        const employee = new Manager('Rufus', 0, 'rufus.the.mag@akc.org', 'intern');
+        const employee = new Manager('Rufus', 0, 'rufus.the.mag@akc.org', 6);
 
         expect(employee.getRole()).toEqual('Manager');
     });
