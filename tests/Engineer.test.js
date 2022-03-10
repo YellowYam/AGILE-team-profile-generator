@@ -96,7 +96,7 @@ describe('getName', () => {
 
 describe('getID', () => {
     it('should return the ID of the employee', () => {
-        const employee = new Engineer('Rufus', 0);
+      const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org', 'CptUnderpants');
 
         expect(employee.getID()).toEqual(0);
     });
@@ -104,7 +104,7 @@ describe('getID', () => {
 
 describe('getEmail', () => {
     it('should return the email of the employee', () => {
-        const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org');
+        const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org', 'CptUnderpants');
 
         expect(employee.getEmail()).toEqual('rufus.the.mag@akc.org');
     });
@@ -114,7 +114,7 @@ describe('getEmail', () => {
 
 describe('getRole', () => {
     it('should return the role of the engineer', () => {
-        const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org');
+        const employee = new Engineer('Rufus', 0, 'rufus.the.mag@akc.org', 'CptUnderpants');
 
         expect(employee.getRole()).toEqual('Engineer');
     });

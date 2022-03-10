@@ -52,7 +52,7 @@ describe('Manager', () => {
           });
 
           it("should throw an error if 'name' is not a string", () => {
-            const cb = () => new Intern(3, 2);
+            const cb = () => new Manager(0, 5, 'rufus.the.mag@akc.org');
             const err = new Error("Expected parameter 'name' to be a non-empty string");
       
             expect(cb).toThrowError(err);
