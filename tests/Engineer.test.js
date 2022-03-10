@@ -7,8 +7,11 @@ describe('Engineer', () => {
         it('should create an object with name, id, email, and gitHub properties', () => {
             const employee = new Engineer('Rufus', 5, 'rufus.the.mag@akc.org', 'CptUnderpants');
     
-            //Verify that the new object has the correct properties
-            expect(employee).toEqual({name: 'Rufus', id: 5, email: 'rufus.the.mag@akc.org', gitHub: 'CptUnderpants'});
+                 // Verify that the new object has the correct properties
+                 expect(employee.name).toEqual("Rufus");
+                 expect(employee.id).toEqual(5);
+                 expect(employee.email).toEqual('rufus.the.mag@akc.org');
+                 expect(employee.gitHub).toEqual('CptUnderpants');
         });
 
         it("should throw an error if provided no arguments", () => {
