@@ -149,8 +149,9 @@ function createEmployee(id, manager) {
             }
             //End creation
             else {
-                console.log('Team finished!');   
-                fs.writeFile(`./dist/team-profile${i}.html`, generateHTML, 'utf8', (err) => console.error(err))
+                console.log('Team finished!');  
+                const htmlDocument = generateHTML(employees, manager); 
+                fs.writeFile(`./dist/team-profile${i}.html`, htmlDocument , 'utf8', (err) => console.error(err))
                 i++; 
                         
             }
