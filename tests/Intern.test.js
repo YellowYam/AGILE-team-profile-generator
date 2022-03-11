@@ -35,7 +35,7 @@ describe('Intern', () => {
             const cb = () => new Intern("Rufus", 0);
       
             // Define the error message that is expected to be thrown
-            const err = new Error("Expected parameter 'email' to be a String");
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
@@ -45,7 +45,7 @@ describe('Intern', () => {
             const cb = () => new Intern('Rufus', 5, 'rufus.the.mag@akc.org');
       
             // Define the error message that is expected to be thrown
-            const err = new Error("Expected parameter 'school' to be a String");
+            const err = new Error("Expected parameter 'school' to be a non-empty string");
       
             // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
@@ -61,14 +61,14 @@ describe('Intern', () => {
 
           it("should throw an error if 'id' is not a number", () => {
             const cb = () => new Intern("Rufus", "2");
-            const err = new Error("Expected parameter 'id' to be a non-negative number");
+            const err = new Error("Expected parameter 'id' to be a number");
       
             expect(cb).toThrowError(err);
           });
 
           it("should throw an error if 'email' is not a string", () => {
             const cb = () => new Intern('Rufus', 2, 0);
-            const err = new Error("Expected parameter 'name' to be a non-empty string");
+            const err = new Error("Expected parameter 'email' to be a non-empty string");
       
             expect(cb).toThrowError(err);
           });
@@ -86,7 +86,7 @@ describe('Intern', () => {
 
 describe('getName', () => {
     it('should return the name of the employee', () => {
-        const employee = new Intern('Rufus');
+        const employee = new Intern('Rufus', 5, 'rufus.the.mag@akc.org', 'GA Tech');
 
         expect(employee.getName()).toEqual('Rufus');
     });
@@ -95,7 +95,7 @@ describe('getName', () => {
 
 describe('getID', () => {
     it('should return the ID of the employee', () => {
-        const employee = new Intern('Rufus', 0);
+        const employee = new Intern('Rufus', 0, 'rufus.the.mag@akc.org', 'GA Tech');
 
         expect(employee.getID()).toEqual(0);
     });
@@ -104,7 +104,7 @@ describe('getID', () => {
 
 describe('getEmail', () => {
     it('should return the email of the employee', () => {
-        const employee = new Intern('Rufus', 0, 'rufus.the.mag@akc.org');
+        const employee = new Intern('Rufus', 0, 'rufus.the.mag@akc.org', 'GA Tech');
 
         expect(employee.getEmail()).toEqual('rufus.the.mag@akc.org');
     });
@@ -124,6 +124,6 @@ describe('getSchool', () => {
     it('should return the school of the employee', () => {
         const employee = new Intern('Rufus', 0, 'rufus.the.mag@akc.org', 'GA Tech');
 
-        expect(employee.getGitHub()).toEqual('GA Tech');
+        expect(employee.getSchool()).toEqual('GA Tech');
     });
 });
