@@ -2,9 +2,13 @@ const inquirer = require('inquirer');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const Manager = require('./lib/manager');
+const generateHTML = require('./src/generateHTML')
 const fs = require('fs');
 
+//index variable for database
+let i = 0;
 
+/** Inquirer questions to create manager **/
 const managerQuestions = [
     //Get manager name
     {
@@ -34,6 +38,7 @@ const managerQuestions = [
     },
 ];
 
+/** Inquirer questions to create engineer **/
 const engineerQuestions = [
     //Get engineer name
     {
@@ -73,6 +78,7 @@ const engineerQuestions = [
     }
 ];
 
+/** Inquirer questions to create intern **/
 const internQuestions = [
     //Get intern name
     {
@@ -103,6 +109,7 @@ const internQuestions = [
     }
 ];
 
+/** Inquirer questions to select new employee type **/
 const employeeTypes = {
     type: 'list',
     name: 'employee_types',
@@ -110,19 +117,19 @@ const employeeTypes = {
     choices: ['Engineer', 'Intern', new inquirer.Separator(), 'End Team Creation'],
 };
 
-function createEmployee(id) {
+// Creates a new employee for the manager
+function createEmployee(id, manager) {
     inquirer.prompt(employeeTypes)
         .then((type) => {
-            console.log(type);
             //Add engineer
             if (type.employee_types === 'Engineer') {
                 inquirer.prompt(engineerQuestions)
                     .then((engineerData) => {
-                        employee = new Engineer(engineerData.engineer_name, id, engineerData.engineer_email,
+                        employee = new Engineer(engineerData.engineer_name, id, engineerData.engineer_email_address,
                             engineerData.engineer_gitHub);
                         employees.push(employee);
                         id++;
-                        createEmployee();
+                        createEmployee(id, manager);
 
                     })
                     .catch((err) => { console.error(err) });
@@ -131,18 +138,21 @@ function createEmployee(id) {
             else if (type.employee_types === 'Intern') {
                 inquirer.prompt(internQuestions)
                     .then((internData) => {
-                        employee = new Intern(internData.intern_name, id, internData.intern_email,
+                        employee = new Intern(internData.intern_name, id, internData.intern_email_address,
                             internData.intern_school);
                         employees.push(employee);
                         id++;
-                        createEmployee();
+                        createEmployee(id, manager);
 
                     })
                     .catch((err) => { console.error(err) });
             }
             //End creation
             else {
-                console.log('Team finished!');
+                console.log('Team finished!');   
+                fs.writeFile(`./dist/team-profile${i}.html`, generateHTML, 'utf8', (err) => console.error(err))
+                i++; 
+                        
             }
 
         })
@@ -160,20 +170,19 @@ function init() {
             data.managerID = 0;
             const manager = new Manager(data.manager_name, data.managerID,
                 data.manager_email_address, data.manager_officeNumber)
+            console.log(manager);
             employees = [];
 
             //Setup employee creation loop
             let id = 1;
 
-            createEmployee(id);
+            createEmployee(id, manager);
 
             })
             .catch((err) => console.error(err));
-
-
-        
 }
 
 //Initialize app
 init();
+
 
