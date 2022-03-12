@@ -1,5 +1,7 @@
+//Import the employee class
 const Employee = require('../lib/employee');
 
+//Describe the employee class
 describe('Employee', () => {
 
     describe('Initialization', () => {
@@ -43,24 +45,33 @@ describe('Employee', () => {
         });
 
         it("should throw an error if 'name' is not a string", () => {
-            const cb = () => new Employee(3, 2);
+            const cb = () => new Employee(3, 2, 'rufus.the.mag@akc.org');
+
+            // Define the error message that is expected to be thrown
             const err = new Error("Expected parameter 'name' to be a non-empty string");
 
+            // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
         });
 
 
         it("should throw an error if 'id' is not a number", () => {
             const cb = () => new Employee("Rufus", "2");
+
+            // Define the error message that is expected to be thrown
             const err = new Error("Expected parameter 'id' to be a number");
 
+            // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
         });
 
         it("should throw an error if 'email' is not a string", () => {
             const cb = () => new Employee('Rufus', 2, 0);
+
+            // Define the error message that is expected to be thrown
             const err = new Error("Expected parameter 'email' to be a non-empty string");
 
+            // Verify that the correct error was thrown when the callback is executed
             expect(cb).toThrowError(err);
         });
     });

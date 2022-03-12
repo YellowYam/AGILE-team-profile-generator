@@ -1,6 +1,8 @@
+//Generates the HTML page for the manager and employees
 function generateHTML(employees, manager) {
 
-    const documentHead = `<!DOCTYPE html>
+//Defines the head of the document
+const documentHead = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,6 +22,7 @@ function generateHTML(employees, manager) {
     <main>
     <div class="card-container">
     `
+//A templated manager card
     const managerCard = `<!--Manager Card-->
 <div class="card">
     <div class="card-header">
@@ -36,13 +39,17 @@ function generateHTML(employees, manager) {
 </div>
 </div>`;
 
+    //An array to store employee cards
     let employeeCards = [];
 
+    //HTML code for the font awesome icons
     const engineerIcon = `<i class="fas fa-glasses"></i>`;
     const internIcon = `<i class="fas fa-user-graduate"></i>`;
 
+    //A loop that generates a card for each employee
     for (let i = 0; i < employees.length; i++) {
         if(employees[i].getRole() === 'Engineer'){
+        //Use this template for an engineer card
         const engineerTemplate = `
         <!-- An Engineer Card-->
      <div class="card">
@@ -63,6 +70,7 @@ function generateHTML(employees, manager) {
         employeeCards.push(engineerTemplate);
         }
     if(employees[i].getRole() === 'Intern'){
+    //Use this template for an intern card
     const internTemplate = 
     `
         <!-- An Intern Card-->
@@ -86,8 +94,10 @@ function generateHTML(employees, manager) {
      
     }
 
+    //Join the employee cards to a finished HTML segment
     employeeCards = employeeCards.join('');
 
+    //Defines the footer of the document
     const footer = `</div>
     </main>
 <body>
@@ -95,7 +105,10 @@ function generateHTML(employees, manager) {
 </body>
 </html>`;
 
+    //Concatinates the finished HTML document
     const indexHTML = documentHead + managerCard + employeeCards + footer;
+
+    //Returns the document
     return indexHTML;
 }
 

@@ -1,3 +1,4 @@
+/* Style and positioning for header */
 header{
     display: flex;
     align-items: center;
@@ -13,6 +14,7 @@ h1{
 }
 
 
+/* Style and positioning for cards */
 .card-container{
     display: flex;
     flex-flow: row wrap;
