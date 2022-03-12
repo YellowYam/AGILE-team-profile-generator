@@ -165,7 +165,7 @@ function createEmployee(employees, manager) {
                 console.log('Team finished!');  
                 const htmlDocument = generateHTML(employees, manager); 
                 fs.writeFile(`./dist/${manager.getName().toLowerCase().split(' ').join('-')}-team-profile.html`, 
-                              htmlDocument , 'utf8', (err) => console.error(err));            
+                              htmlDocument , 'utf8', (err) => err ? console.log('File written') : console.error(err));            
             }
 
         })
