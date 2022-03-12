@@ -178,7 +178,6 @@ function init() {
         //Ask manager questions
         .prompt(managerQuestions)
         .then((data) => {
-            console.log(data);
             // Set manager to id0 and create an array to hold the employees
             const manager = new Manager(data.manager_name, data.manager_ID,
                 data.manager_email_address, data.manager_officeNumber)
