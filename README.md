@@ -23,7 +23,7 @@
 
   ## Usage
    1. Navigate to the application directory.
-2. Run <code>node index.js</code>
+2. Run <code>npm start</code>
 3. Fill in information for all team members.
 4. Look for a file in the distribution folder beginning with the team manager's name.
 
@@ -36,7 +36,7 @@
   ## Tests
   ![Issues](https://img.shields.io/github/issues/YellowYam/team-profile-generator?style=plastic)<br>
   Run <code>npm test</code> to test the object classes. </br>
-  
+
 
   ## Questions?
   <a href = "mailto:cody.scoles@gmail.com"> Email me! </a> <br>
