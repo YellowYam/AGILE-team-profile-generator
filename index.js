@@ -5,9 +5,6 @@ const Manager = require('./lib/manager');
 const generateHTML = require('./src/generateHTML')
 const fs = require('fs');
 
-//index variable for database
-let i = 0;
-
 /** Inquirer questions to create manager **/
 const managerQuestions = [
     //Get manager name
@@ -15,6 +12,12 @@ const managerQuestions = [
         type: 'input',
         name: 'manager_name',
         message: 'Manager name: ',
+    },
+     //Get manager ID
+     {
+        type: 'number',
+        name: 'manager_ID',
+        message: 'Manager ID: ',
     },
     //Get user email
     {
@@ -46,6 +49,12 @@ const engineerQuestions = [
         name: 'engineer_name',
         message: 'Engineer name: ',
     },
+     //Get engineer ID
+     {
+        type: 'number',
+        name: 'engineer_ID',
+        message: 'Engineer ID: ',
+    },
     //Get engineer email
     {
         type: 'input',
@@ -72,7 +81,7 @@ const engineerQuestions = [
                 return true;
             }
 
-            return 'Please enter a valid email.';
+            return 'Please enter a valid GitHub username.';
         },
 
     }
@@ -86,7 +95,13 @@ const internQuestions = [
         name: 'intern_name',
         message: 'Intern name: ',
     },
-    //Get engineer email
+    //Get intern ID
+    {
+        type: 'number',
+        name: 'intern_ID',
+        message: 'Intern ID: ',
+    },
+    //Get intern email
     {
         type: 'input',
         name: 'intern_email_address',
@@ -118,18 +133,17 @@ const employeeTypes = {
 };
 
 // Creates a new employee for the manager
-function createEmployee(id, manager) {
+function createEmployee(employees, manager) {
     inquirer.prompt(employeeTypes)
         .then((type) => {
             //Add engineer
             if (type.employee_types === 'Engineer') {
                 inquirer.prompt(engineerQuestions)
                     .then((engineerData) => {
-                        employee = new Engineer(engineerData.engineer_name, id, engineerData.engineer_email_address,
+                        employee = new Engineer(engineerData.engineer_name, engineerData.engineer_ID, engineerData.engineer_email_address,
                             engineerData.engineer_gitHub);
                         employees.push(employee);
-                        id++;
-                        createEmployee(id, manager);
+                        createEmployee(employees, manager);
 
                     })
                     .catch((err) => { console.error(err) });
@@ -138,11 +152,10 @@ function createEmployee(id, manager) {
             else if (type.employee_types === 'Intern') {
                 inquirer.prompt(internQuestions)
                     .then((internData) => {
-                        employee = new Intern(internData.intern_name, id, internData.intern_email_address,
+                        employee = new Intern(internData.intern_name, internData.intern_ID, internData.intern_email_address,
                             internData.intern_school);
                         employees.push(employee);
-                        id++;
-                        createEmployee(id, manager);
+                        createEmployee(employees, manager);
 
                     })
                     .catch((err) => { console.error(err) });
@@ -151,9 +164,8 @@ function createEmployee(id, manager) {
             else {
                 console.log('Team finished!');  
                 const htmlDocument = generateHTML(employees, manager); 
-                fs.writeFile(`./dist/${manager.getName().toLowerCase().split(' ').join('-')}-team-profile.html`, htmlDocument , 'utf8', (err) => console.error(err))
-                i++; 
-                        
+                fs.writeFile(`./dist/${manager.getName().toLowerCase().split(' ').join('-')}-team-profile.html`, 
+                              htmlDocument , 'utf8', (err) => console.error(err));            
             }
 
         })
@@ -168,16 +180,12 @@ function init() {
         .then((data) => {
             console.log(data);
             // Set manager to id0 and create an array to hold the employees
-            data.managerID = 0;
-            const manager = new Manager(data.manager_name, data.managerID,
+            const manager = new Manager(data.manager_name, data.manager_ID,
                 data.manager_email_address, data.manager_officeNumber)
             console.log(manager);
-            employees = [];
 
-            //Setup employee creation loop
-            let id = 1;
-
-            createEmployee(id, manager);
+            const employees = [];
+            createEmployee(employees, manager);
 
             })
             .catch((err) => console.error(err));

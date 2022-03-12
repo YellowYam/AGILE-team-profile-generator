@@ -31,7 +31,7 @@ function generateHTML(employees, manager) {
     <ul>
     <li>ID: ${manager.getID()}</li>
     <li>Email: <a href="mailto:${manager.getEmail()}}">${manager.getEmail()}</a> </li>
-    <li>Office Number: test</li>
+    <li>Office Number: ${manager.officeNumber}</li>
     </ul>
 </div>
 </div>`;
@@ -54,8 +54,8 @@ function generateHTML(employees, manager) {
     <div class="card-body">
         <ul>
         <li>ID: ${employees[i].getID()}</li>
-        <li>Email: <a href="mailto:${employees[i].getEmail()}">${employees[i].getEmail()}</a></li>
-        ${`<li>GitHub: ${employees[i].getGitHub()}</li>`}
+        <li>Email: <a href="mailto:${employees[i].getEmail()}" target="_blank">${employees[i].getEmail()}</a></li>
+        ${`<li>GitHub: <a href="https://www.github.com/${employees[i].getGitHub()}" target="_blank">${employees[i].getGitHub()}</a></li>`}
         </ul>
     </div>
 </div>
