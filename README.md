@@ -27,7 +27,7 @@
 3. Fill in information for all team members.
 4. Look for a file in the distribution folder beginning with the team manager's name.
 
-  ##### For an ilustrated guide, see this [Walkthrough Video]('https://drive.google.com/file/d/11Vo1bRRJtNR9l4bWmmVQA6IuWvJ7r8I4/view').
+  ##### For an ilustrated guide, see this [Walkthrough Video](https://drive.google.com/file/d/11Vo1bRRJtNR9l4bWmmVQA6IuWvJ7r8I4/view).
 
   ## Contributors
   If you would like to become a contributor on this project, please find my contact information in the [questions](#questions)
