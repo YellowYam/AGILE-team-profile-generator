@@ -151,7 +151,7 @@ function createEmployee(id, manager) {
             else {
                 console.log('Team finished!');  
                 const htmlDocument = generateHTML(employees, manager); 
-                fs.writeFile(`./dist/${manager.getName()}-team-profile.html`, htmlDocument , 'utf8', (err) => console.error(err))
+                fs.writeFile(`./dist/${manager.getName().toLowerCase().split(' ').join('-')}-team-profile.html`, htmlDocument , 'utf8', (err) => console.error(err))
                 i++; 
                         
             }

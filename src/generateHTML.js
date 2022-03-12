@@ -18,6 +18,7 @@ function generateHTML(employees, manager) {
     </header>
 
     <main>
+    <div class="card-container">
     `
     const managerCard = `<!--Manager Card-->
 <div class="card">
@@ -47,7 +48,7 @@ function generateHTML(employees, manager) {
      <div class="card">
         <div class="card-header">
             <h3>${employees[i].getName()}</h3>
-            <h3 class="card-title">${engineerIcon}${employees[i].getRole()}</h3>
+            <h3 class="card-title">${engineerIcon} ${employees[i].getRole()}</h3>
         </div>
    
     <div class="card-body">
@@ -68,7 +69,7 @@ function generateHTML(employees, manager) {
      <div class="card">
         <div class="card-header">
             <h3>${employees[i].getName()}</h3>
-            <h3 class="card-title">${internIcon}${employees[i].getRole()}</h3>
+            <h3 class="card-title">${internIcon} ${employees[i].getRole()}</h3>
         </div>
    
     <div class="card-body">
@@ -87,7 +88,8 @@ function generateHTML(employees, manager) {
 
     employeeCards = employeeCards.join('');
 
-    const footer = `</main>
+    const footer = `</div>
+    </main>
 <body>
 
 </body>
