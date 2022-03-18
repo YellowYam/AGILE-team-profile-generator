@@ -16,7 +16,7 @@
   [git bash](https://git-scm.com/) and [node package manager](https://nodejs.org/en/).
 
   ```
-  $ git clone git@github.com:YellowYam/team-profile-generator.git
+  $ git clone git@github.com:YellowYam/AGILE-team-profile-generator.git
   $ cd ../path/to/the/file
   $ npm install
   ``` 
