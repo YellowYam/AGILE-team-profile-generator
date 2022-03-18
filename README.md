@@ -1,7 +1,7 @@
-# team-profile-generator [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# AGILE-team-profile-generator [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
   ## Description
-  Uses TDD and Object-oriented programming to deploy a team profile generator, which writes an HTML page displaying employee cards for the team.
+  Uses TDD and Object-oriented programming to deploy a team profile generator, which writes an HTML page displaying employee cards for an AGILE development team.
 
   ## TOC
   1. [Installation](#installation)   
